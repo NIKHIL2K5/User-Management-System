@@ -1,0 +1,97 @@
+import React, { useState, useContext } from 'react';
+import { UserContext } from '../contexts/UserContext';
+import { useTheme } from '../contexts/ThemeContex'; // Import the theme hook
+
+function EditUsers() {
+  const { users, setUsers } = useContext(UserContext);
+  const { theme } = useTheme(); // Get the current theme
+  const [formData, setFormData] = useState({ id: null, name: '', email: '' });
+  const [isEditing, setIsEditing] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleAdd = () => {
+    if (!formData.name || !formData.email) return;
+    const newUser = { id: Date.now(), name: formData.name, email: formData.email };
+    setUsers([...users, newUser]);
+    setFormData({ id: null, name: '', email: '' });
+  };
+
+  const handleDelete = (id) => {
+    setUsers(users.filter((user) => user.id !== id));
+  };
+
+  const startEdit = (user) => {
+    setIsEditing(true);
+    setFormData(user);
+  };
+
+  const handleUpdate = () => {
+    setUsers(users.map((u) => (u.id === formData.id ? formData : u)));
+    setIsEditing(false);
+    setFormData({ id: null, name: '', email: '' });
+  };
+
+  const filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div className="p-6 w-full">
+      <h1 className={theme === 'light' ? "text-3xl font-bold mb-6 text-gray-800" : "text-3xl font-bold mb-6 text-white"}>
+        Edit Users
+      </h1>
+
+      <div className={theme === 'light' ? "mb-6 p-4 bg-white rounded-lg shadow-md flex gap-4" : "mb-6 p-4 bg-slate-800 rounded-lg shadow-md flex gap-4"}>
+        <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} className={theme === 'light' ? "border-black-300 bg-white text-gray-900 p-2 rounded w-1/3" : "border-black-600 bg-slate-700 text-white p-2 rounded w-1/3"} />
+        <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} className={theme === 'light' ? "border-black-300 bg-white text-gray-900 p-2 rounded w-1/3" : "border-black-600 bg-slate-700 text-white p-2 rounded w-1/3"} />
+        {isEditing ? (
+          <button onClick={handleUpdate} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+            Update
+          </button>
+        ) : (
+          <button onClick={handleAdd} className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
+            Add
+          </button>
+        )}
+      </div>
+
+      <div className="mb-4">
+        <input
+          type="text"
+          placeholder="Search users by name..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className={theme === 'light' ? "border border-gray-300 bg-white text-gray-900 p-2 rounded w-full shadow-sm" : "border border-gray-600 bg-slate-700 text-white p-2 rounded w-full shadow-sm"}
+        />
+      </div>
+
+      <div className={theme === 'light' ? "bg-white shadow-md rounded-lg" : "bg-slate-800 shadow-md rounded-lg"}>
+        <ul className={theme === 'light' ? "divide-y divide-gray-200" : "divide-y divide-gray-700"}>
+          {filteredUsers.map((user) => (
+            <li key={user.id} className={theme === 'light' ? "p-4 flex justify-between items-center hover:bg-gray-50" : "p-4 flex justify-between items-center hover:bg-slate-700"}>
+              <div>
+                <p className={theme === 'light' ? "font-medium text-gray-900" : "font-medium text-white"}>{user.name}</p>
+                <p className={theme === 'light' ? "text-sm text-gray-500" : "text-sm text-gray-400"}>{user.email}</p>
+              </div>
+              <div className="flex gap-2">
+                <button onClick={() => startEdit(user)} className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded">
+                  Edit
+                </button>
+                <button onClick={() => handleDelete(user.id)} className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">
+                  Delete
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+export default EditUsers;
