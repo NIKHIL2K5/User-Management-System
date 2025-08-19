@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../contexts/UserContext';
-import { useTheme } from '../contexts/ThemeContex'; // Import the theme hook
+import { useTheme } from '../contexts/ThemeContex';
 
 function EditUsers() {
   const { users, setUsers } = useContext(UserContext);
-  const { theme } = useTheme(); // Get the current theme
+  const { theme } = useTheme(); 
   const [formData, setFormData] = useState({ id: null, name: '', email: '' });
   const [isEditing, setIsEditing] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -95,3 +95,93 @@ function EditUsers() {
 }
 
 export default EditUsers;
+
+// import './style.css'
+// import {useState} from 'react'
+
+
+// const UserList=[
+//   {
+//     "employeeID": 101,
+//     "fullName": "Alice Johnson",
+//     "jobTitle": "Marketing Specialist",
+//     "department": "Marketing",
+//     "email": "alice.j@example.com",
+//     "hireDate": "2022-03-12",
+//     "salary": 68000,
+//     "isActive": true
+//   },
+//   {
+//     "employeeID": 102,
+//     "fullName": "Bob Miller",
+//     "jobTitle": "Sales Representative",
+//     "department": "Sales",
+//     "email": "bob.m@example.com",
+//     "hireDate": "2021-07-22",
+//     "salary": 72000,
+//     "isActive": true
+//   },
+//   {
+//     "employeeID": 103,
+//     "fullName": "Charlie Davis",
+//     "jobTitle": "Accountant",
+//     "department": "Finance",
+//     "email": "charlie.d@example.com",
+//     "hireDate": "2023-09-01",
+//     "salary": 75000,
+//     "isActive": true
+//   },
+//   {
+//     "employeeID": 104,
+//     "fullName": "Diana Garcia",
+//     "jobTitle": "HR Coordinator",
+//     "department": "Human Resources",
+//     "email": "diana.g@example.com",
+//     "hireDate": "2020-05-18",
+//     "salary": 61000,
+//     "isActive": false
+//   }
+// ]
+
+// function EditUsers(){
+//   const [deleteUsersList,setdeleteUsersList]=useState(UserList)
+//   const [searchUsers,setsearchUsers]=useState("")
+
+//   const searchUsersList= (event) =>{
+//     setsearchUsers(event.target.value)
+//     console.log(event.target.value.toLowerCase())
+//   }
+
+//   const searchedUsersList=deleteUsersList.filter((users) => users.fullName.toLowerCase().includes(searchUsers.toLowerCase()))
+
+//   const deleteUsers = (key) =>{
+//     console.log("delete")
+//   }
+
+
+
+//   return(
+//     <div>
+//       <h1>EditUsers List</h1>
+//       <div >
+//         <span className="m-2">Search Users : </span>
+//         <input className="m-2 border border-gray-600" placeholder='Search Users' onChange={searchUsersList} value={searchUsers}></input>
+//       </div>
+//       <ul>
+//        {searchedUsersList.map((users) => (
+//           <li key={users.employeeID}>
+//             <hr />
+//             <p>Name : {users.fullName}</p>
+//             <p>Email : {users.email}</p>
+//             <div>
+//               <button className="bg-red-600 p-2 m-2 rounded-xl text-white font-bold" onclick={() => (deleteUsers(users.employeeID))}>Delete User</button>
+//             </div>
+//             <hr/>
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   )
+// }
+
+// export default EditUsers;

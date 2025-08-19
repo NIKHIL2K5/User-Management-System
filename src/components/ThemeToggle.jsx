@@ -12,7 +12,7 @@ export const ThemeToggleButton = () => {
                  hover:bg-slate-300 dark:hover:bg-slate-700 
                  transition-colors"
     >
-      {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
+      {theme === 'light' ? '🌙' : '☀️'}
     </button>
   );
 };

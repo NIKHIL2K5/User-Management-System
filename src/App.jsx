@@ -3,11 +3,12 @@ import {ThemeProvider} from './contexts/ThemeContex'
 
 import './App.css';
 
-import { Login } from './pages/Login';
+import { Authentication } from './pages/Authentication';
 import { UserProfile } from './pages/UserProfile';
 import Dashboard from './pages/Dashboard';
 import { Home } from './pages/Home';
 import Navbar from './pages/Navbar';
+
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Authentication />} />
           <Route path="/userprofile" element={<UserProfile />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
