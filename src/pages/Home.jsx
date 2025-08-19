@@ -95,7 +95,7 @@ export const Home = () => {
                             Go to Dashboard
                         </Link>
                     )}
-                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" className={theme === 'light' ? "bg-white text-slate-700 font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-slate-100 transition-transform transform hover:scale-105" : "bg-slate-800 text-slate-300 hover:bg-slate-700 font-semibold px-8 py-3 rounded-lg shadow-lg transition-transform transform hover:scale-105"}>
+                    <a href="https://github.com/NIKHIL2K5/User-Management-System" target="_blank" rel="noopener noreferrer" className={theme === 'light' ? "bg-white text-slate-700 font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-slate-100 transition-transform transform hover:scale-105" : "bg-slate-800 text-slate-300 hover:bg-slate-700 font-semibold px-8 py-3 rounded-lg shadow-lg transition-transform transform hover:scale-105"}>
                         View on GitHub
                     </a>
                 </div>
